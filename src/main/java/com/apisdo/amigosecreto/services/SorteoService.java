@@ -5,9 +5,9 @@ import com.apisdo.amigosecreto.entities.JugadorEntity;
 import com.apisdo.amigosecreto.entities.SorteoEntity;
 import com.apisdo.amigosecreto.repositories.Interfaces.ISorteoRepository;
 import jakarta.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -49,33 +49,43 @@ public class SorteoService {
   }
 
   /**
-   * Asigna amigos secretos de forma circular y retorna los sorteos generados.
+   * Asigna amigos secretos de forma aleatoria y valida las asignaciones.
    *
    * @param juegoId       Identificador del juego.
    * @param jugadorIdList Lista de IDs de jugadores.
    * @return Lista de sorteos generados.
    */
   private List<SorteoEntity> asignarAmigosSecretos(int juegoId, List<Integer> jugadorIdList) {
-    Collections.shuffle(jugadorIdList);
+    List<Integer> amigosSecretos;
 
+    do {
+      amigosSecretos = new ArrayList<>(jugadorIdList);
+      Collections.shuffle(amigosSecretos);
+    } while (!esSorteoValido(jugadorIdList, amigosSecretos));
+
+    List<Integer> finalAmigosSecretos = amigosSecretos;
     return jugadorIdList.stream()
         .map(jugadorId -> {
-          int amigoSecretoId = obtenerAmigoSiguiente(jugadorIdList, jugadorId);
+          int amigoSecretoId = finalAmigosSecretos.get(jugadorIdList.indexOf(jugadorId));
           return construirSorteo(juegoId, jugadorId, amigoSecretoId);
         })
         .toList();
   }
 
   /**
-   * Retorna el siguiente jugador en la lista como el amigo secreto.
+   * Verifica que un sorteo sea válido (ningún jugador puede ser su propio amigo secreto).
    *
    * @param jugadorIdList Lista de IDs de jugadores.
-   * @param jugadorId     ID del jugador actual.
-   * @return ID del amigo secreto asignado.
+   * @param amigosSecretos Lista de IDs asignados como amigos secretos.
+   * @return true si el sorteo es válido, false si no lo es.
    */
-  private int obtenerAmigoSiguiente(List<Integer> jugadorIdList, int jugadorId) {
-    int index = jugadorIdList.indexOf(jugadorId);
-    return jugadorIdList.get((index + 1) % jugadorIdList.size());
+  private boolean esSorteoValido(List<Integer> jugadorIdList, List<Integer> amigosSecretos) {
+    for (int i = 0; i < jugadorIdList.size(); i++) {
+      if (jugadorIdList.get(i).equals(amigosSecretos.get(i))) {
+        return false; // Un jugador no puede ser su propio amigo secreto.
+      }
+    }
+    return true;
   }
 
   /**
