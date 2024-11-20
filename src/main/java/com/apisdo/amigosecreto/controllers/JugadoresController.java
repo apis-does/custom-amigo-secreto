@@ -26,8 +26,6 @@ public class JugadoresController {
             .build()
     );
     List<JugadorResponseDto> jugadores = new ArrayList<>();
-    jugadores.add(new JugadorResponseDto("Doris", "doris.salazar.jv@gmail.com",994376854, deseosDoris));
-    jugadores.add(new JugadorResponseDto("Valentina", "vale.salazar.fernandez.12@gmail.com",994376854, deseosDoris));
     return jugadores;
   }
 }

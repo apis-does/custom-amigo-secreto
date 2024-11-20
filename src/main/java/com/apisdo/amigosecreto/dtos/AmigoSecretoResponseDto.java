@@ -8,8 +8,9 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class JugadorResponseDto {
+public class AmigoSecretoResponseDto {
   public String nombre;
   public String email;
   public long telefono;
+  public List<DeseoResponseDto> listaDeseos;
 }

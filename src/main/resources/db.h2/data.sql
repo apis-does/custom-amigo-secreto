@@ -14,7 +14,11 @@ VALUES ('Deseo 1', 'Este es el deseo 1', 'https://www.google.com', 10000, 1, 1),
        ('Deseo 2', 'Este es el deseo 2', 'https://www.google.com', 15000, 1, 1),
        ('Deseo 1', 'Este es el deseo 1', 'https://www.google.com', 35000, 2, 1),
        ('Deseo 1', 'Este es el deseo 1', 'https://www.google.com', 5000, 3, 1),
-       ('Deseo 2', 'Este es el deseo 2', 'https://www.google.com', 50000, 3, 1);
+       ('Deseo 2', 'Este es el deseo 2', 'https://www.google.com', 50000, 3, 1),
+       ('Iphone pro max', 'Necesito un iphone 16 pro max jiji', 'https://www.google.com', 1200000, 1, 2),
+       ('Audifonos', 'Audifonos de casco porfa :(', 'https://www.google.com', 10000, 2, 2),
+       ('Libro 1 ', 'Quiero libros porque soy muy lectora', 'https://www.google.com', 35000, 3, 2),
+       ('Libro 2 ', 'Quiero libros porque soy muy lectora', 'https://www.google.com', 35000, 3, 2);
 
 INSERT INTO sorteo (juego_id, jugador_id, amigo_secreto_id)
 VALUES (1, 1, 2),

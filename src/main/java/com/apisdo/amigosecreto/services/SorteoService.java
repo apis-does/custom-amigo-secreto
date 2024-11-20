@@ -1,8 +1,12 @@
 package com.apisdo.amigosecreto.services;
 
+import com.apisdo.amigosecreto.dtos.SorteoResponseDto;
+import com.apisdo.amigosecreto.entities.DeseoEntity;
 import com.apisdo.amigosecreto.entities.JuegoEntity;
 import com.apisdo.amigosecreto.entities.JugadorEntity;
 import com.apisdo.amigosecreto.entities.SorteoEntity;
+import com.apisdo.amigosecreto.mappers.SorteoMapper;
+import com.apisdo.amigosecreto.repositories.Interfaces.IDeseoRepository;
 import com.apisdo.amigosecreto.repositories.Interfaces.ISorteoRepository;
 import jakarta.transaction.Transactional;
 import java.util.ArrayList;
@@ -14,9 +18,12 @@ import org.springframework.stereotype.Service;
 public class SorteoService {
 
   private final ISorteoRepository iSorteoRepository;
+  private final IDeseoRepository iDeseoRepository;
 
-  public SorteoService(ISorteoRepository iSorteoRepository) {
+  public SorteoService(ISorteoRepository iSorteoRepository,
+                       IDeseoRepository iDeseoRepository) {
     this.iSorteoRepository = iSorteoRepository;
+    this.iDeseoRepository = iDeseoRepository;
   }
 
   /**
@@ -25,8 +32,18 @@ public class SorteoService {
    * @param juegoId Identificador del juego.
    * @return Lista de sorteos.
    */
-  public List<SorteoEntity> getSorteosPorJuego(int juegoId) {
-    return iSorteoRepository.findByJuego_JuegoId(juegoId);
+  public List<SorteoResponseDto> getSorteosPorJuego(int juegoId) {
+    List<SorteoEntity> sorteos = iSorteoRepository.findByJuego_JuegoId(juegoId);
+
+    return sorteos.stream()
+        .map(sorteo -> {
+          List<DeseoEntity> deseosAmigo = iDeseoRepository.findByJugador_JugadorIdAndJuego_JuegoId(
+              sorteo.getAmigoSecreto().getJugadorId(),
+              juegoId
+          );
+          return SorteoMapper.toDto(sorteo, deseosAmigo);
+        })
+        .toList();
   }
 
   /**
