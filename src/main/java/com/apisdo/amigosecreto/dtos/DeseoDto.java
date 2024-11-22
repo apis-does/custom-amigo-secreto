@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class DeseoResponseDto {
+public class DeseoDto {
   public String nombre;
   public String descripcion;
   public String url;

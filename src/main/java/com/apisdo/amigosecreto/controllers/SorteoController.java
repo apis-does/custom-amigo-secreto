@@ -1,13 +1,9 @@
 package com.apisdo.amigosecreto.controllers;
 
-import com.apisdo.amigosecreto.dtos.DeseoResponseDto;
-import com.apisdo.amigosecreto.dtos.JugadorResponseDto;
 import com.apisdo.amigosecreto.dtos.SorteoResponseDto;
 import com.apisdo.amigosecreto.entities.SorteoEntity;
 import com.apisdo.amigosecreto.services.SorteoService;
-import java.util.ArrayList;
 import java.util.List;
-import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;

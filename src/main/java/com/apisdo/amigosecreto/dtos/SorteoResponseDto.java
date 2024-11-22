@@ -5,5 +5,5 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class SorteoResponseDto {
   public JugadorResponseDto jugador;
-  public AmigoSecretoResponseDto amigoSecreto;
+  public JugadorDeseoResponseDto amigoSecreto;
 }

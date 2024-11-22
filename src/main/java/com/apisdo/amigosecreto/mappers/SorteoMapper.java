@@ -1,7 +1,7 @@
 package com.apisdo.amigosecreto.mappers;
 
-import com.apisdo.amigosecreto.dtos.AmigoSecretoResponseDto;
-import com.apisdo.amigosecreto.dtos.DeseoResponseDto;
+import com.apisdo.amigosecreto.dtos.JugadorDeseoResponseDto;
+import com.apisdo.amigosecreto.dtos.DeseoDto;
 import com.apisdo.amigosecreto.dtos.JugadorResponseDto;
 import com.apisdo.amigosecreto.dtos.SorteoResponseDto;
 import com.apisdo.amigosecreto.entities.DeseoEntity;
@@ -12,7 +12,7 @@ import java.util.List;
 public class SorteoMapper {
 
   public static SorteoResponseDto toDto(SorteoEntity sorteo, List<DeseoEntity> deseos) {
-    List<DeseoResponseDto> deseosDto = new ArrayList<>();
+    List<DeseoDto> deseosDto = new ArrayList<>();
     for (DeseoEntity deseo : deseos) {
       deseosDto.add(DeseoMapper.toDto(deseo));
     }
@@ -22,7 +22,7 @@ public class SorteoMapper {
             sorteo.getJugador().getEmail(),
             sorteo.getJugador().getTelefono()
         ),
-        new AmigoSecretoResponseDto(
+        new JugadorDeseoResponseDto(
             sorteo.getAmigoSecreto().getNombre(),
             sorteo.getAmigoSecreto().getEmail(),
             sorteo.getAmigoSecreto().getTelefono(),
