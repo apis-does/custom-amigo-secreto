@@ -8,6 +8,7 @@ import com.apisdo.amigosecreto.entities.JugadorEntity;
 public class DeseoMapper {
   public static DeseoDto toDto(DeseoEntity deseo) {
     return new DeseoDto(
+        deseo.getDeseoId(),
         deseo.getNombre(),
         deseo.getDescripcion(),
         deseo.getUrl(),
@@ -17,7 +18,7 @@ public class DeseoMapper {
 
   public static DeseoEntity toEntity(DeseoDto deseoDto, int jugadorId, int juegoId) {
     return new DeseoEntity(
-        null,
+        deseoDto.deseoId,
         deseoDto.nombre,
         deseoDto.descripcion,
         deseoDto.url,
