@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class JuegoResponseDto {
+public class JuegoRequestDto {
   public Integer juegoId;
   public String nombre;
   public String reglas;
@@ -17,5 +17,4 @@ public class JuegoResponseDto {
   public Long precioMaximo;
   public LocalDate fechaInicio;
   public LocalDate fechaSorteo;
-  public List<JugadorResponseDto> jugadores;
 }

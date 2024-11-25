@@ -16,12 +16,9 @@ import org.springframework.stereotype.Service;
 public class DeseoService {
 
   private final IDeseoRepository iDeseoRepository;
-  private final IJugadorRepository iJugadorRepository;
 
-  public DeseoService(IDeseoRepository iDeseoRepository,
-                      IJugadorRepository iJugadorRepository) {
+  public DeseoService(IDeseoRepository iDeseoRepository) {
     this.iDeseoRepository = iDeseoRepository;
-    this.iJugadorRepository = iJugadorRepository;
   }
 
   public List<DeseoDto> getDeseos(int jugadorId, int juegoId) {

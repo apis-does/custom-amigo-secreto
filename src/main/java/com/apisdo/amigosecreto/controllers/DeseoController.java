@@ -34,5 +34,4 @@ public class DeseoController {
   public List<DeseoDto> actualizarListaDeseos(@RequestBody final ListaDeseosRequestDto listaDesosRequest) {
     return deseoService.actualizarListaDeseos(listaDesosRequest);
   }
-
 }

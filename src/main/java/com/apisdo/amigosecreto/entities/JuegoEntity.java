@@ -28,7 +28,7 @@ public class JuegoEntity {
   private String nombre;
 
   @Column(name = "reglas")
-  private  String string;
+  private  String reglas;
 
   @Column(name = "precio_minimo")
   private Long precioMinimo;

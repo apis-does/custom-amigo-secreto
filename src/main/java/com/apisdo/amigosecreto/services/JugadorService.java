@@ -1,11 +1,9 @@
 package com.apisdo.amigosecreto.services;
 
-import com.apisdo.amigosecreto.dtos.JugadorDeseoResponseDto;
 import com.apisdo.amigosecreto.dtos.JugadorResponseDto;
 import com.apisdo.amigosecreto.mappers.JugadorMapper;
 import com.apisdo.amigosecreto.repositories.Interfaces.IDeseoRepository;
 import com.apisdo.amigosecreto.repositories.Interfaces.IJugadorRepository;
-import java.util.List;
 import org.springframework.stereotype.Service;
 
 @Service
